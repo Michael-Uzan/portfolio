@@ -11,6 +11,7 @@ import { buildPath } from './buildPath';
 import { JourneyPath } from './JourneyPath';
 import { Station } from './Station';
 import { StationCard } from './StationCard';
+import { useJourneyTimeline } from './useJourneyTimeline';
 
 const JOURNEY_MEDIA = {
   webm: '/media/journey.webm',
@@ -44,6 +45,16 @@ export function JourneySection() {
     [width, pathHeight, layout],
   );
   const activeStation = journey[activeIndex];
+
+  const scrollToStation = useJourneyTimeline({
+    sectionRef,
+    sceneRef,
+    drawnPathRef,
+    geometry,
+    pinned,
+    animate: !reducedMotion,
+    onActiveIndexChange: setActiveIndex,
+  });
 
   return (
     <section
@@ -84,7 +95,7 @@ export function JourneySection() {
                 isActive={index === activeIndex}
                 isReached={reducedMotion || index <= activeIndex}
                 onSelect={() => {
-                  setActiveIndex(index);
+                  if (!scrollToStation(index)) setActiveIndex(index);
                 }}
               />
             );
