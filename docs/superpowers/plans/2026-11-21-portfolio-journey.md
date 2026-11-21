@@ -22,6 +22,7 @@
 - Unit tests sit next to their source as `*.test.ts(x)`. Vitest is used with explicit imports (`import { describe, expect, it } from 'vitest'`), not globals.
 - The phone number from the CV must never appear on the site.
 - Every commit message ends with the trailer line `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
+- Package manager is **pnpm** (switched after Task 6 by owner decision). Tasks 1-6 text shows the original npm commands.
 - Prettier style: single quotes, trailing commas, width 100, semicolons.
 
 ## File Map
@@ -1550,7 +1551,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - [ ] **Step 1: Install React Router**
 
 ```bash
-npm install react-router@^8.5.2
+pnpm add react-router@^8.5.2
 ```
 
 - [ ] **Step 2: Write the failing test** `src/app/router.test.tsx`
@@ -1592,7 +1593,7 @@ describe('routes', () => {
 
 - [ ] **Step 3: Run it and confirm it fails**
 
-Run: `npx vitest run src/app`
+Run: `pnpm exec vitest run src/app`
 Expected: FAIL, `Failed to resolve import "./router"`.
 
 - [ ] **Step 4: Create the layout components**
@@ -1798,18 +1799,18 @@ createRoot(rootElement).render(
 
 - [ ] **Step 9: Run the tests and confirm they pass**
 
-Run: `npm test`
+Run: `pnpm test`
 Expected: PASS: all files, including `src/app/router.test.tsx` (3 tests).
 
 - [ ] **Step 10: Check it in the browser**
 
-Run: `npm run dev`, open http://localhost:5173.
-Expected: navbar with name + GitHub/LinkedIn, big "THE JOURNEY OF MICHAEL" title, the route with 8 stations (static for now; the video area is black until Task 9 adds media), the card for Ben-Gurion bottom-right, footer. Clicking a station updates the card. `/anything` shows the 404 page with a working button. Build output (`npm run build`) lists separate `HomePage-*.js` and `NotFoundPage-*.js` chunks.
+Run: `pnpm dev`, open http://localhost:5173.
+Expected: navbar with name + GitHub/LinkedIn, big "THE JOURNEY OF MICHAEL" title, the route with 8 stations (static for now; the video area is black until Task 9 adds media), the card for Ben-Gurion bottom-right, footer. Clicking a station updates the card. `/anything` shows the 404 page with a working button. Build output (`pnpm build`) lists separate `HomePage-*.js` and `NotFoundPage-*.js` chunks.
 
 - [ ] **Step 11: Lint, typecheck, commit**
 
 ```bash
-npm run format && npm run lint && npm run typecheck
+pnpm format && pnpm lint && pnpm typecheck
 git add -A
 git commit -m "feat: add router, layout, navbar, footer, home and 404 pages
 
@@ -1850,7 +1851,7 @@ This is animation glue that jsdom cannot run (no SVG geometry, no layout). It is
 - [ ] **Step 1: Install GSAP**
 
 ```bash
-npm install gsap@^3.15.1 @gsap/react@^2.1.2
+pnpm add gsap@^3.15.1 @gsap/react@^2.1.2
 ```
 
 - [ ] **Step 2: Create `src/features/journey/useJourneyTimeline.ts`**
@@ -1955,10 +1956,10 @@ Add this right after the `const activeStation = journey[activeIndex];` line (`se
 
 - [ ] **Step 4: Unit tests still pass** (they run with reduced motion, so the hook returns early)
 
-Run: `npm test`
+Run: `pnpm test`
 Expected: PASS, all files.
 
-- [ ] **Step 5: Manual check, desktop** (`npm run dev`, window ≥ 768px wide)
+- [ ] **Step 5: Manual check, desktop** (`pnpm dev`, window ≥ 768px wide)
 
 Expected:
 1. The section pins on load. Scrolling draws the solid line left → right over the dashed one.
@@ -1975,7 +1976,7 @@ Expected:
 - [ ] **Step 7: Lint, typecheck, commit**
 
 ```bash
-npm run format && npm run lint && npm run typecheck
+pnpm format && pnpm lint && pnpm typecheck
 git add -A
 git commit -m "feat: animate journey route with pinned GSAP ScrollTrigger timeline
 
@@ -2078,12 +2079,12 @@ Sitemap: https://michael-uzan.vercel.app/sitemap.xml
 
 - [ ] **Step 7: Verify in the browser**
 
-`npm run build && npm run preview` → http://localhost:4173: the video plays behind the journey with readable text over the dark overlay; the tab shows "Michael Uzan · Full-Stack & Agentic AI Engineer" and the MU favicon. In Chrome DevTools → Lighthouse (desktop), SEO = 100.
+`pnpm build && pnpm preview` → http://localhost:4173: the video plays behind the journey with readable text over the dark overlay; the tab shows "Michael Uzan · Full-Stack & Agentic AI Engineer" and the MU favicon. In Chrome DevTools → Lighthouse (desktop), SEO = 100.
 
 - [ ] **Step 8: Commit**
 
 ```bash
-npm run format
+pnpm format
 git add -A
 git commit -m "feat: add journey video, poster, favicon and SEO metadata
 
@@ -2099,15 +2100,15 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Modify: `.gitignore` (append Playwright output), `package.json` (script)
 
 **Interfaces:**
-- Consumes: the built site via `npm run preview` on port 4173; the accessible names `heading "…Journey of Michael"`, `list "Career milestones"`, and station buttons with `aria-current="step"` (Task 6).
-- Produces: `npm run test:e2e`; two projects, `desktop` (Desktop Chrome) and `mobile` (Pixel 7).
+- Consumes: the built site via `pnpm preview` on port 4173; the accessible names `heading "…Journey of Michael"`, `list "Career milestones"`, and station buttons with `aria-current="step"` (Task 6).
+- Produces: `ppnpm test:e2e`; two projects, `desktop` (Desktop Chrome) and `mobile` (Pixel 7).
 
 - [ ] **Step 1: Install and add the script**
 
 ```bash
-npm install -D @playwright/test @axe-core/playwright
-npx playwright install chromium
-npm pkg set scripts.test:e2e="playwright test"
+pnpm add -D @playwright/test @axe-core/playwright
+pnpm exec playwright install chromium
+pnpm pkg set scripts.test:e2e="playwright test"
 printf "\n# Playwright\nplaywright-report\ntest-results\n.lighthouseci\n" >> .gitignore
 ```
 
@@ -2130,7 +2131,7 @@ export default defineConfig({
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
   ],
   webServer: {
-    command: 'npm run build && npm run preview -- --port 4173 --strictPort',
+    command: 'pnpm build && pnpm preview --port 4173 --strictPort',
     url: 'http://localhost:4173',
     reuseExistingServer: !isCI,
   },
@@ -2203,13 +2204,13 @@ for (const path of ['/', '/no-such-page']) {
 
 - [ ] **Step 5: Run e2e**
 
-Run: `npm run test:e2e`
+Run: `ppnpm test:e2e`
 Expected: PASS, 12 tests (6 specs × 2 projects). If axe reports a violation, fix the component it names (usually contrast: raise the text opacity) rather than disabling the rule.
 
 - [ ] **Step 6: Lint, typecheck, commit**
 
 ```bash
-npm run format && npm run lint && npm run typecheck
+pnpm format && pnpm lint && pnpm typecheck
 git add -A
 git commit -m "test: add Playwright e2e and axe accessibility checks
 
@@ -2230,7 +2231,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - [ ] **Step 1: Install Lighthouse CI**
 
 ```bash
-npm install -D @lhci/cli
+pnpm add -D @lhci/cli
 ```
 
 - [ ] **Step 2: Create `lighthouserc.json`**
@@ -2257,7 +2258,7 @@ npm install -D @lhci/cli
 
 - [ ] **Step 3: Run Lighthouse locally**
 
-Run: `npm run build && npx lhci autorun`
+Run: `pnpm build && pnpm exec lhci autorun`
 Expected: `All results processed!` with no assertion failures. If performance is < 0.9 (Lighthouse emulates a slow phone), check the report's LCP element. Usual fixes: lower the video bitrate (higher `-crf`), or confirm the poster preload from Task 9 is present.
 
 - [ ] **Step 4: Create `.github/workflows/ci.yml`**
@@ -2279,29 +2280,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run format:check
-      - run: npm run lint
-      - run: npm run typecheck
-      - run: npm test
-      - run: npm run build
+          cache: pnpm
+      - run: ppnpm add --frozen-lockfile
+      - run: pnpm format:check
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
 
   e2e:
     needs: quality
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - run: npm run test:e2e
+          cache: pnpm
+      - run: ppnpm add --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: ppnpm test:e2e
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -2314,19 +2317,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-      - run: npx lhci autorun
+          cache: pnpm
+      - run: ppnpm add --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm exec lhci autorun
 ```
 
 - [ ] **Step 5: Verify the whole local pipeline once**
 
 ```bash
-npm run format:check && npm run lint && npm run typecheck && npm test && npm run build && npm run test:e2e
+pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build && ppnpm test:e2e
 ```
 Expected: every step passes.
 
@@ -2384,7 +2388,7 @@ Expected: repo URL printed; the Actions tab shows the CI run, and all three jobs
 - [ ] **Step 3: Connect Vercel (Michael, in the browser)**
 
 1. https://vercel.com/new → Import `Michael-Uzan/portfolio`.
-2. Framework preset: **Vite** (auto-detected). Build `npm run build`, output `dist`. Leave the defaults.
+2. Framework preset: **Vite** (auto-detected). Build `pnpm build`, output `dist`. Leave the defaults.
 3. Project name: `michael-uzan` (gives `michael-uzan.vercel.app`; if taken, note the domain Vercel assigns).
 4. Deploy.
 
