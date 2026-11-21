@@ -5,3 +5,4 @@ test-results
 .lighthouseci
 package-lock.json
 docs
+.superpowers

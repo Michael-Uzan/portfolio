@@ -1,5 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import '@fontsource/bebas-neue';
+import '@fontsource-variable/inter';
 import './index.css';
 
 const rootElement = document.getElementById('root');
