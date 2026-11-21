@@ -4,15 +4,16 @@ Michael Uzan's portfolio: React 19, TypeScript, Vite, GSAP, Tailwind. Deployed o
 
 ## Scripts
 
-| Command                              | What it does                       |
-| ------------------------------------ | ---------------------------------- |
-| `npm run dev`                        | Dev server                         |
-| `npm run lint` / `npm run typecheck` | ESLint / TypeScript                |
-| `npm test`                           | Vitest unit + component tests      |
-| `npm run test:e2e`                   | Playwright e2e + axe accessibility |
-| `npm run build`                      | Production build to `dist/`        |
+| Command                        | What it does                       |
+| ------------------------------ | ---------------------------------- |
+| `pnpm install`                 | Install dependencies               |
+| `pnpm dev`                     | Dev server                         |
+| `pnpm lint` / `pnpm typecheck` | ESLint / TypeScript                |
+| `pnpm test`                    | Vitest unit + component tests      |
+| `pnpm test:e2e`                | Playwright e2e + axe accessibility |
+| `pnpm build`                   | Production build to `dist/`        |
 
 ## Content
 
 Milestones live in `src/content/journey.ts`. Add one object, push, and Vercel redeploys.
-`npm test` validates the content against the Zod schema.
+`pnpm test` validates the content against the Zod schema.

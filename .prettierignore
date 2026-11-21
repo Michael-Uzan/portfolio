@@ -3,6 +3,6 @@ coverage
 playwright-report
 test-results
 .lighthouseci
-package-lock.json
+pnpm-lock.yaml
 docs
 .superpowers
