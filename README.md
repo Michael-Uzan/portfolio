@@ -2,6 +2,10 @@
 
 Michael Uzan's portfolio: React 19, TypeScript, Vite, GSAP, Tailwind. Deployed on Vercel.
 
+## Requirements
+
+Node >= 22.22 and pnpm 10.
+
 ## Scripts
 
 | Command                        | What it does                       |
