@@ -17,5 +17,6 @@ export default defineConfig({
     command: 'pnpm build && pnpm preview --port 4173 --strictPort',
     url: 'http://localhost:4173',
     reuseExistingServer: !isCI,
+    timeout: 120_000,
   },
 });
