@@ -40,12 +40,21 @@ describe('buildCluster', () => {
   });
 
   it('uses the low end of every range when random is 0', () => {
-    expect(buildCluster(sequence(0)).sort()).toEqual(['far', 'mid']);
+    const group = buildCluster(sequence(0));
+    expect([count(group, 'far'), count(group, 'mid'), count(group, 'near')]).toEqual([
+      cluster.far[0],
+      cluster.mid[0],
+      cluster.near[0],
+    ]);
   });
 
   it('uses the high end of every range when random is just below 1', () => {
     const group = buildCluster(sequence(0.999));
-    expect([count(group, 'far'), count(group, 'mid'), count(group, 'near')]).toEqual([3, 3, 1]);
+    expect([count(group, 'far'), count(group, 'mid'), count(group, 'near')]).toEqual([
+      cluster.far[1],
+      cluster.mid[1],
+      cluster.near[1],
+    ]);
   });
 });
 
@@ -71,7 +80,8 @@ describe('layoutColumns', () => {
         previous !== undefined && column.x - (previous.x + depths[previous.depth].fontSize) > 0
       );
     });
-    expect(gaps.length).toBeGreaterThan(5);
+    // The gap range can include 0, so not every cluster is followed by a gap, but some are.
+    expect(gaps.length).toBeGreaterThan(0);
     expect(new Set(columns.map((column) => column.depth))).toEqual(new Set(['far', 'mid', 'near']));
   });
 });

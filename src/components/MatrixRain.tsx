@@ -93,7 +93,7 @@ export function MatrixRain() {
   return (
     <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black">
       <canvas ref={canvasRef} className="sticky top-0 block h-svh w-full" />
-      <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/45 to-black/80" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/35 to-black/70" />
     </div>
   );
 }
