@@ -2101,7 +2101,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 **Interfaces:**
 - Consumes: the built site via `pnpm preview` on port 4173; the accessible names `heading "…Journey of Michael"`, `list "Career milestones"`, and station buttons with `aria-current="step"` (Task 6).
-- Produces: `ppnpm test:e2e`; two projects, `desktop` (Desktop Chrome) and `mobile` (Pixel 7).
+- Produces: `pnpm test:e2e`; two projects, `desktop` (Desktop Chrome) and `mobile` (Pixel 7).
 
 - [ ] **Step 1: Install and add the script**
 
@@ -2204,7 +2204,7 @@ for (const path of ['/', '/no-such-page']) {
 
 - [ ] **Step 5: Run e2e**
 
-Run: `ppnpm test:e2e`
+Run: `pnpm test:e2e`
 Expected: PASS, 12 tests (6 specs × 2 projects). If axe reports a violation, fix the component it names (usually contrast: raise the text opacity) rather than disabling the rule.
 
 - [ ] **Step 6: Lint, typecheck, commit**
@@ -2285,7 +2285,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - run: ppnpm add --frozen-lockfile
+      - run: pnpm add --frozen-lockfile
       - run: pnpm format:check
       - run: pnpm lint
       - run: pnpm typecheck
@@ -2302,9 +2302,9 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - run: ppnpm add --frozen-lockfile
+      - run: pnpm add --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
-      - run: ppnpm test:e2e
+      - run: pnpm test:e2e
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -2322,7 +2322,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - run: ppnpm add --frozen-lockfile
+      - run: pnpm add --frozen-lockfile
       - run: pnpm build
       - run: pnpm exec lhci autorun
 ```
@@ -2330,7 +2330,7 @@ jobs:
 - [ ] **Step 5: Verify the whole local pipeline once**
 
 ```bash
-pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build && ppnpm test:e2e
+pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm test:e2e
 ```
 Expected: every step passes.
 
