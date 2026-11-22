@@ -11,9 +11,7 @@ function getStationList() {
 describe('JourneySection', () => {
   it('renders the title as the page heading', () => {
     render(<JourneySection />);
-    expect(
-      screen.getByRole('heading', { level: 1, name: /journey of michael/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: /evolution of me/i })).toBeInTheDocument();
   });
 
   it('renders every milestone in order as a list item', () => {

@@ -1181,7 +1181,7 @@ function getStationList() {
 describe('JourneySection', () => {
   it('renders the title as the page heading', () => {
     render(<JourneySection />);
-    expect(screen.getByRole('heading', { level: 1, name: /journey of michael/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: /evolution of me/i })).toBeInTheDocument();
   });
 
   it('renders every milestone in order as a list item', () => {
@@ -1572,7 +1572,7 @@ describe('routes', () => {
   it('renders the journey on the home page', async () => {
     renderAt('/');
     expect(
-      await screen.findByRole('heading', { level: 1, name: /journey of michael/i }),
+      await screen.findByRole('heading', { level: 1, name: /evolution of me/i }),
     ).toBeInTheDocument();
   });
 
@@ -1805,7 +1805,7 @@ Expected: PASS: all files, including `src/app/router.test.tsx` (3 tests).
 - [ ] **Step 10: Check it in the browser**
 
 Run: `pnpm dev`, open http://localhost:5173.
-Expected: navbar with name + GitHub/LinkedIn, big "THE JOURNEY OF MICHAEL" title, the route with 8 stations (static for now; the video area is black until Task 9 adds media), the card for Ben-Gurion bottom-right, footer. Clicking a station updates the card. `/anything` shows the 404 page with a working button. Build output (`pnpm build`) lists separate `HomePage-*.js` and `NotFoundPage-*.js` chunks.
+Expected: navbar with name + GitHub/LinkedIn, big "THE evolution of me" title, the route with 8 stations (static for now; the video area is black until Task 9 adds media), the card for Ben-Gurion bottom-right, footer. Clicking a station updates the card. `/anything` shows the 404 page with a working button. Build output (`pnpm build`) lists separate `HomePage-*.js` and `NotFoundPage-*.js` chunks.
 
 - [ ] **Step 11: Lint, typecheck, commit**
 
@@ -2100,7 +2100,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Modify: `.gitignore` (append Playwright output), `package.json` (script)
 
 **Interfaces:**
-- Consumes: the built site via `pnpm preview` on port 4173; the accessible names `heading "…Journey of Michael"`, `list "Career milestones"`, and station buttons with `aria-current="step"` (Task 6).
+- Consumes: the built site via `pnpm preview` on port 4173; the accessible names `heading "…evolution of me"`, `list "Career milestones"`, and station buttons with `aria-current="step"` (Task 6).
 - Produces: `pnpm test:e2e`; two projects, `desktop` (Desktop Chrome) and `mobile` (Pixel 7).
 
 - [ ] **Step 1: Install and add the script**
@@ -2146,7 +2146,7 @@ import { expect, test } from '@playwright/test';
 test.describe('journey', () => {
   test('shows the title and the milestone list', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('heading', { level: 1, name: /journey of michael/i })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: /evolution of me/i })).toBeVisible();
     await expect(
       page.getByRole('list', { name: 'Career milestones' }).getByRole('listitem').first(),
     ).toBeAttached();
@@ -2177,7 +2177,7 @@ test.describe('journey with reduced motion', () => {
 
   test('does not pin the section and shows the poster', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('heading', { level: 1, name: /journey of michael/i })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: /evolution of me/i })).toBeVisible();
     await expect(page.locator('.pin-spacer')).toHaveCount(0);
     await expect(page.locator('video')).toHaveCount(0);
   });
