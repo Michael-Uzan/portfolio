@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
-import { BackgroundVideo } from '@/components/BackgroundVideo';
+import { MatrixRain } from '@/components/MatrixRain';
 import { DESKTOP_QUERY } from '@/consts/breakpoints';
 import { journey } from '@/content/journey';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
@@ -12,12 +12,6 @@ import { JourneyPath } from './JourneyPath';
 import { Station } from './Station';
 import { StationCard } from './StationCard';
 import { useJourneyTimeline } from './useJourneyTimeline';
-
-const JOURNEY_MEDIA = {
-  webm: '/media/journey.webm',
-  mp4: '/media/journey.mp4',
-  poster: '/media/journey-poster.jpg',
-} as const;
 
 export function JourneySection() {
   const isDesktop = useMediaQuery(DESKTOP_QUERY);
@@ -62,7 +56,7 @@ export function JourneySection() {
       aria-labelledby="journey-title"
       className={cn('relative isolate overflow-clip text-white', pinned ? 'h-svh' : 'pb-32')}
     >
-      <BackgroundVideo {...JOURNEY_MEDIA} />
+      <MatrixRain />
 
       <h1
         id="journey-title"
