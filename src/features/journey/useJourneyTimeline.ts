@@ -37,6 +37,7 @@ export function useJourneyTimeline({
   useGSAP(
     () => {
       triggerRef.current = null;
+      lastIndexRef.current = -1;
       const section = sectionRef.current;
       const scene = sceneRef.current;
       const path = drawnPathRef.current;
@@ -87,7 +88,10 @@ export function useJourneyTimeline({
   return useCallback(
     (index: number) => {
       const trigger = triggerRef.current;
-      if (!pinned || !trigger || stationCount < 2) return false;
+      if (!pinned || !trigger || stationCount < 2) {
+        lastIndexRef.current = index;
+        return false;
+      }
       const top = trigger.start + (trigger.end - trigger.start) * (index / (stationCount - 1));
       window.scrollTo({ top, behavior: 'smooth' });
       return true;
