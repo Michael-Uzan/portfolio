@@ -2285,7 +2285,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm add --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
       - run: pnpm format:check
       - run: pnpm lint
       - run: pnpm typecheck
@@ -2302,7 +2302,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm add --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e
       - uses: actions/upload-artifact@v4
@@ -2322,7 +2322,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm add --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - run: pnpm exec lhci autorun
 ```
