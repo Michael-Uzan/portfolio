@@ -83,7 +83,9 @@ export function JourneySection() {
         style={{ width: geometry.width, height: geometry.height }}
       >
         <JourneyPath geometry={geometry} drawnPathRef={drawnPathRef} />
-        <ol aria-label="Career milestones">
+        {/* Explicit role: Tailwind's list reset makes Safari/VoiceOver drop list semantics. */}
+        {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
+        <ol role="list" aria-label="Career milestones">
           {journey.map((station, index) => {
             const point = geometry.points[index];
             if (!point) return null;

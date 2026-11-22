@@ -12,6 +12,7 @@ export function StationCard({ station, className }: StationCardProps) {
   return (
     <div
       aria-live="polite"
+      aria-atomic="true"
       className={cn(
         'z-20 max-w-sm rounded-2xl border border-white/15 bg-black/60 p-5 backdrop-blur-md',
         className,
