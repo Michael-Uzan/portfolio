@@ -122,6 +122,19 @@
     @apply bg-background text-foreground;
   }
 }
+/*
+ * Bebas Neue is self-hosted (public/fonts, copied from @fontsource/bebas-neue, SIL OFL) so
+ * index.html can preload it. `optional` means a late font is skipped for that page view
+ * instead of swapped in: the narrow display font changes how the title wraps, and a swap
+ * would shift the whole journey (CLS).
+ */
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url('/fonts/bebas-neue-latin-400-normal.woff2') format('woff2');
+}
 @theme {
   --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
