@@ -26,6 +26,22 @@ test.describe('journey', () => {
     }).toPass({ timeout: 10_000 });
   });
 
+  test('selecting a station activates that exact station', async ({ page }, testInfo) => {
+    test.skip(
+      testInfo.project.name !== 'desktop',
+      'station buttons are only scroll-driven on desktop',
+    );
+    await page.goto('/');
+    const stations = page.getByRole('list', { name: 'Career milestones' }).getByRole('button');
+    await expect(stations.first()).toHaveAttribute('aria-current', 'step');
+    const count = await stations.count();
+    for (let i = 0; i < count; i++) {
+      const button = stations.nth(i);
+      await button.click();
+      await expect(button).toHaveAttribute('aria-current', 'step', { timeout: 10_000 });
+    }
+  });
+
   test('unknown routes show the 404 page', async ({ page }) => {
     await page.goto('/no-such-page');
     await expect(page.getByRole('heading', { level: 1, name: '404' })).toBeVisible();

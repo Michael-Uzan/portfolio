@@ -92,7 +92,10 @@ export function useJourneyTimeline({
         lastIndexRef.current = index;
         return false;
       }
-      const top = trigger.start + (trigger.end - trigger.start) * (index / (stationCount - 1));
+      const clamped = Math.min(Math.max(index, 0), stationCount - 1);
+      // Aim just inside the band: the browser rounds scroll positions to whole pixels.
+      const raw = trigger.start + (trigger.end - trigger.start) * (clamped / (stationCount - 1));
+      const top = Math.min(trigger.end, Math.ceil(raw) + 1);
       window.scrollTo({ top, behavior: 'smooth' });
       return true;
     },
