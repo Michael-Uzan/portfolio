@@ -1,23 +1,32 @@
 import { useEffect, useRef } from 'react';
 import { MATRIX_RAIN } from '@/consts/animation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
-import { createRain, randomDigit, stepRain, type RainState } from './matrixRain/rain';
+import type { RainState } from '@/types/matrixRain';
+import { createRain, randomDigit, stepRain } from './matrixRain/rain';
 
-const { fontSize, fps, fadeAlpha, resetChance, headColor, trailColor } = MATRIX_RAIN;
+const { fps, fadeAlpha, resetChance, staticFrames, headColor, trailColor } = MATRIX_RAIN;
 const FRAME_MS = 1000 / fps;
+const FONT_FAMILY = 'ui-monospace, SFMono-Regular, Menlo, monospace';
 
-function drawFrame(ctx: CanvasRenderingContext2D, rain: RainState, width: number, height: number) {
+function drawFrame(ctx: CanvasRenderingContext2D, rain: RainState, width: number) {
+  ctx.globalAlpha = 1;
   ctx.fillStyle = `rgba(0, 0, 0, ${fadeAlpha})`;
-  ctx.fillRect(0, 0, width, height);
-  rain.columns.forEach((column, i) => {
-    const x = i * fontSize;
-    const y = Math.floor(column.y) * fontSize;
+  ctx.fillRect(0, 0, width, rain.height);
+  let font = 0;
+  for (const column of rain.columns) {
+    // Columns are sorted by depth, so the font only changes a few times per frame.
+    if (column.fontSize !== font) {
+      font = column.fontSize;
+      ctx.font = `${font}px ${FONT_FAMILY}`;
+    }
+    const y = Math.floor(column.y) * column.fontSize;
+    ctx.globalAlpha = column.alpha;
     // Recolour the previous head green so only the leading digit stays bright.
     ctx.fillStyle = trailColor;
-    ctx.fillText(randomDigit(), x, y - fontSize);
+    ctx.fillText(randomDigit(), column.x, y - column.fontSize);
     ctx.fillStyle = headColor;
-    ctx.fillText(randomDigit(), x, y);
-  });
+    ctx.fillText(randomDigit(), column.x, y);
+  }
 }
 
 /** Falling-digits canvas behind a section. Pauses when hidden or off-screen; static under reduced motion. */
@@ -30,7 +39,7 @@ export function MatrixRain() {
     const ctx = canvas?.getContext('2d');
     if (!canvas || !ctx) return;
 
-    let rain: RainState = { columns: [], rows: 0 };
+    let rain: RainState = { columns: [], height: 0 };
     let width = 0;
     let height = 0;
     let onScreen = true;
@@ -38,7 +47,7 @@ export function MatrixRain() {
     let frameId = 0;
 
     const step = () => {
-      drawFrame(ctx, rain, width, height);
+      drawFrame(ctx, rain, width);
       rain = stepRain(rain, { resetChance });
     };
 
@@ -49,13 +58,13 @@ export function MatrixRain() {
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.font = `${fontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`;
       ctx.textBaseline = 'top';
+      ctx.globalAlpha = 1;
       ctx.fillStyle = '#000';
       ctx.fillRect(0, 0, width, height);
-      rain = createRain({ width, height, fontSize });
+      rain = createRain({ width, height });
       // Reduced motion: fast-forward to a filled screen once instead of animating.
-      if (reducedMotion) for (let i = 0; i < rain.rows * 2; i++) step();
+      if (reducedMotion) for (let i = 0; i < staticFrames; i++) step();
     };
 
     const tick = (time: number) => {

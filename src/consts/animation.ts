@@ -13,16 +13,24 @@ export const JOURNEY_VIEWPORTS_PER_STATION = 1;
 /** ScrollTrigger scrub smoothing (seconds). */
 export const JOURNEY_SCRUB_SECONDS = 1;
 
-/** Digital-rain background behind the journey. */
+/** Digital-rain background behind the journey. Ranges are [min, max]. */
 export const MATRIX_RAIN = {
-  /** Glyph size and column width (px). */
-  fontSize: 18,
   /** Frame cap — the effect reads as smooth at 30 fps and halves the work of 60. */
   fps: 30,
   /** Alpha of the black wash drawn each frame; lower = longer trails. */
   fadeAlpha: 0.08,
   /** Chance per frame that a column past the bottom restarts at the top. */
   resetChance: 0.025,
+  /** Frames pre-drawn into the single static frame shown under reduced motion. */
+  staticFrames: 90,
   headColor: '#ecfccb',
   trailColor: '#4ade80',
+  /** Depth layers: far columns are small, slow and dim; near ones big, fast and bright. Speed is rows per frame. */
+  depths: {
+    far: { fontSize: 10, speed: [0.3, 0.5], alpha: [0.2, 0.45] },
+    mid: { fontSize: 16, speed: [0.5, 0.8], alpha: [0.45, 0.8] },
+    near: { fontSize: 28, speed: [0.8, 1.1], alpha: [0.8, 1] },
+  },
+  /** Columns per cluster for each depth, and the gap after each cluster (in mid-size columns). */
+  cluster: { far: [1, 3], mid: [1, 3], near: [0, 1], gap: [1, 3] },
 } as const;
