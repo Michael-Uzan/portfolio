@@ -7,7 +7,7 @@ export const journey: JourneyStation[] = [
     year: 2012,
     endYear: 2016,
     kind: 'degree',
-    title: 'B.Sc. Mechanical Engineering',
+    title: 'B.Sc. Engineering',
     org: 'Ben-Gurion University',
     summary:
       'Engineering fundamentals, systems thinking, and solving hard problems with precision.',
@@ -34,7 +34,7 @@ export const journey: JourneyStation[] = [
   {
     id: 'coding-academy',
     year: 2021,
-    kind: 'course',
+    kind: 'degree',
     title: 'Full-Stack Bootcamp',
     org: 'Coding Academy',
     summary: 'Graduated a 640-hour full-stack bootcamp.',

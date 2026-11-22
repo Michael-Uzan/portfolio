@@ -72,9 +72,9 @@ export function JourneySection() {
         )}
       >
         <span className="text-3xl md:text-5xl">The</span>{' '}
-        <span className="text-6xl md:text-9xl">Journey</span>{' '}
-        <span className="text-3xl md:text-5xl">of</span>{' '}
-        <span className="text-6xl md:text-9xl">Michael</span>
+        <span className="text-6xl md:text-9xl">Evolution</span>{' '}
+        <span className="text-3xl md:text-5xl">Of</span>{' '}
+        <span className="text-6xl md:text-9xl">Me</span>
       </h1>
 
       <div
