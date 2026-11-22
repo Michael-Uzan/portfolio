@@ -3,9 +3,7 @@ import { expect, test } from '@playwright/test';
 test.describe('journey', () => {
   test('shows the title and the milestone list', async ({ page }) => {
     await page.goto('/');
-    await expect(
-      page.getByRole('heading', { level: 1, name: /journey of michael/i }),
-    ).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: /evolution of me/i })).toBeVisible();
     await expect(
       page.getByRole('list', { name: 'Career milestones' }).getByRole('listitem').first(),
     ).toBeAttached();
@@ -55,9 +53,7 @@ test.describe('journey with reduced motion', () => {
 
   test('does not pin the section and draws a static digital-rain background', async ({ page }) => {
     await page.goto('/');
-    await expect(
-      page.getByRole('heading', { level: 1, name: /journey of michael/i }),
-    ).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: /evolution of me/i })).toBeVisible();
     await expect(page.locator('.pin-spacer')).toHaveCount(0);
     await expect(page.locator('video')).toHaveCount(0);
     await expect(page.locator('canvas')).toHaveCount(1);

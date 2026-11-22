@@ -13,7 +13,7 @@ describe('routes', () => {
   it('renders the journey on the home page', async () => {
     renderAt('/');
     expect(
-      await screen.findByRole('heading', { level: 1, name: /journey of michael/i }),
+      await screen.findByRole('heading', { level: 1, name: /evolution of me/i }),
     ).toBeInTheDocument();
   });
 
