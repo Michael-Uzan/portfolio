@@ -46,9 +46,11 @@ describe('JourneySection', () => {
     expect(screen.getByText(lastStation.summary)).toBeInTheDocument();
   });
 
-  it('shows a still poster instead of video when reduced motion is on', () => {
+  it('renders the digital-rain background as a decorative canvas', () => {
     const { container } = render(<JourneySection />);
+    const canvas = container.querySelector('canvas');
+    expect(canvas).toBeInTheDocument();
+    expect(canvas?.closest('[aria-hidden="true"]')).not.toBeNull();
     expect(container.querySelector('video')).toBeNull();
-    expect(container.querySelector('img')).toHaveAttribute('src', '/media/journey-poster.jpg');
   });
 });

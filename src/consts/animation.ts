@@ -12,3 +12,17 @@ export const HORIZONTAL_PATH_Y_RATIO = 0.6;
 export const JOURNEY_VIEWPORTS_PER_STATION = 1;
 /** ScrollTrigger scrub smoothing (seconds). */
 export const JOURNEY_SCRUB_SECONDS = 1;
+
+/** Digital-rain background behind the journey. */
+export const MATRIX_RAIN = {
+  /** Glyph size and column width (px). */
+  fontSize: 18,
+  /** Frame cap — the effect reads as smooth at 30 fps and halves the work of 60. */
+  fps: 30,
+  /** Alpha of the black wash drawn each frame; lower = longer trails. */
+  fadeAlpha: 0.08,
+  /** Chance per frame that a column past the bottom restarts at the top. */
+  resetChance: 0.025,
+  headColor: '#ecfccb',
+  trailColor: '#4ade80',
+} as const;
