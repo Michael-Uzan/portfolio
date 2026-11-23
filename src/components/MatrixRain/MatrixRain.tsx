@@ -3,7 +3,7 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { startRain } from './startRain';
 
 /** Falling-digits canvas behind a section. Pauses when hidden or off-screen; static under reduced motion. */
-export function MatrixRain() {
+export const MatrixRain = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reducedMotion = usePrefersReducedMotion();
 
@@ -23,4 +23,4 @@ export function MatrixRain() {
       <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/35 to-black/70" />
     </div>
   );
-}
+};

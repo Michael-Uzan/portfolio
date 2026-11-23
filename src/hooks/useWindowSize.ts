@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
+import type { WindowSize } from './useWindowSize.types';
 
-interface WindowSize {
-  width: number;
-  height: number;
+function readSize(): WindowSize {
+  return { width: window.innerWidth, height: window.innerHeight };
 }
-
-const readSize = (): WindowSize => ({ width: window.innerWidth, height: window.innerHeight });
 
 export function useWindowSize(): WindowSize {
   const [size, setSize] = useState(readSize);
@@ -15,6 +13,7 @@ export function useWindowSize(): WindowSize {
       setSize(readSize());
     };
     window.addEventListener('resize', onResize);
+
     return () => {
       window.removeEventListener('resize', onResize);
     };

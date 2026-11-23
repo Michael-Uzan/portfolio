@@ -4,10 +4,10 @@ import { RouterProvider } from 'react-router/dom';
 import { describe, expect, it } from 'vitest';
 import { routes } from './routes.config';
 
-function renderAt(path: string) {
+const renderAt = (path: string) => {
   const router = createMemoryRouter(routes, { initialEntries: [path] });
   render(<RouterProvider router={router} />);
-}
+};
 
 describe('routes', () => {
   it('renders the journey on the home page', async () => {

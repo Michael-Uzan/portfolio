@@ -8,9 +8,11 @@ const { depths, cluster } = MATRIX_RAIN;
 /** Deterministic random source that cycles through the given values. */
 function sequence(...values: number[]): () => number {
   let i = 0;
+
   return () => {
     const value = values[i % values.length] ?? 0;
     i += 1;
+
     return value;
   };
 }
@@ -18,10 +20,12 @@ function sequence(...values: number[]): () => number {
 /** Small seeded PRNG (mulberry32) for property checks over many layouts. */
 function seeded(seed: number): () => number {
   let a = seed;
+
   return () => {
     a = (a + 0x6d2b79f5) | 0;
     let t = Math.imul(a ^ (a >>> 15), 1 | a);
     t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
@@ -79,6 +83,7 @@ describe('layoutColumns', () => {
     const columns = layoutColumns(1280, seeded(seed));
     const gaps = columns.filter((column, i) => {
       const previous = columns[i - 1];
+
       return (
         previous !== undefined && column.x - (previous.x + depths[previous.depth].fontSize) > 0
       );

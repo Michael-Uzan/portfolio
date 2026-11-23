@@ -11,8 +11,9 @@ interface StationProps {
   onSelect: () => void;
 }
 
-export function Station({ station, point, isActive, isReached, onSelect }: StationProps) {
+export const Station = ({ station, point, isActive, isReached, onSelect }: StationProps) => {
   const Icon = STATION_ICONS[station.kind];
+
   return (
     <li
       className="absolute -translate-x-1/2 -translate-y-1/2"
@@ -47,4 +48,4 @@ export function Station({ station, point, isActive, isReached, onSelect }: Stati
       </button>
     </li>
   );
-}
+};

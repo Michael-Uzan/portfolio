@@ -13,7 +13,7 @@ import { Station } from './Station';
 import { StationCard } from './StationCard';
 import { useJourneyTimeline } from './useJourneyTimeline';
 
-export function JourneySection() {
+export const JourneySection = () => {
   const isDesktop = useMediaQuery(DESKTOP_QUERY);
   const reducedMotion = usePrefersReducedMotion();
   const { width, height } = useWindowSize();
@@ -83,6 +83,7 @@ export function JourneySection() {
           {journey.map((station, index) => {
             const point = geometry.points[index];
             if (!point) return null;
+
             return (
               <Station
                 key={station.id}
@@ -107,4 +108,4 @@ export function JourneySection() {
       ) : null}
     </section>
   );
-}
+};

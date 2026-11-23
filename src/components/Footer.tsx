@@ -1,8 +1,7 @@
 import { CONTACT_EMAIL } from '@/consts/links.consts';
 import { profile } from '@/content/profile';
 
-// Claude: why not arrow function?
-export function Footer() {
+export const Footer = () => {
   return (
     <footer className="border-t border-white/10 px-6 py-8 text-sm text-white/70">
       <div className="mx-auto flex max-w-6xl flex-col gap-2 md:flex-row md:justify-between">
@@ -15,4 +14,4 @@ export function Footer() {
       </div>
     </footer>
   );
-}
+};
