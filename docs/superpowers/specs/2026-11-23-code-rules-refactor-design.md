@@ -165,3 +165,14 @@ No commands, agents or skills for now.
 
 `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm test:e2e`, `pnpm build` all pass.
 Journey + matrix rain render and animate as before (desktop, mobile, reduced motion).
+
+## 8. Refinements made while planning
+
+- `routes/routes.config.ts` (no JSX, so `.ts` not `.tsx`).
+- `content/schemas.ts` splits into `journey.schemas.ts` + `profile.schemas.ts`.
+- Hook/function option types also leave their files: `useJourneyTimeline.types.ts`,
+  `hooks/useWindowSize.types.ts`. Only component Props stay inline.
+- MatrixRain loop/observers → `startRain.ts`; `rain.utils.ts` holds `drawFrame` + `resizeCanvas`.
+- New tested util `stationScrollTop` in `useJourneyTimeline.utils.ts`.
+- Rollout order: structural moves first, ESLint rules land with the style conversion,
+  so every commit passes the pre-commit hook.
