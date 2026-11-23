@@ -13,7 +13,9 @@ export const MATRIX_RAIN = {
   /** The leading character of each column is white with a soft glow; the trail behind it is green. */
   headColor: '#ffffff',
   /** Blur radius (px) of the leading character's glow; 0 turns it off. */
-  headGlow: 8,
+  headGlow: 14,
+  /** The leading character ignores its column's depth opacity so it always reads bright white. */
+  headAlpha: 1,
   trailColor: '#4ade80',
   /** Depth layers: far columns are small, slow and dim; near ones big, fast and bright. Speed is rows per frame. */
   depths: {

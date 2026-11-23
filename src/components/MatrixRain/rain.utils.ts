@@ -2,7 +2,7 @@ import { MATRIX_RAIN } from '@/config/matrixRain.config';
 import { randomGlyph } from '@/utils/random.utils';
 import type { CanvasSize, RainState } from './MatrixRain.types';
 
-const { fadeAlpha, glyphs, headColor, headGlow, trailColor } = MATRIX_RAIN;
+const { fadeAlpha, glyphs, headAlpha, headColor, headGlow, trailColor } = MATRIX_RAIN;
 const FONT_FAMILY = 'ui-monospace, SFMono-Regular, Menlo, monospace';
 /** Split once: drawing picks two glyphs per column every frame. */
 const GLYPHS = Array.from(glyphs);
@@ -27,6 +27,7 @@ export function drawFrame(ctx: CanvasRenderingContext2D, rain: RainState, width:
     ctx.shadowBlur = 0;
     ctx.fillStyle = trailColor;
     ctx.fillText(randomGlyph(GLYPHS), column.x, y - column.fontSize);
+    ctx.globalAlpha = headAlpha;
     ctx.shadowBlur = headGlow;
     ctx.fillStyle = headColor;
     ctx.fillText(randomGlyph(GLYPHS), column.x, y);
