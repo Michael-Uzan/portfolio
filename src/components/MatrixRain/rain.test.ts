@@ -151,3 +151,16 @@ describe('stepRain', () => {
     expect(next.columns[0]?.y).toBe(12);
   });
 });
+
+describe('MATRIX_RAIN.glyphs', () => {
+  const glyphs = Array.from(MATRIX_RAIN.glyphs);
+
+  it('has no duplicates', () => {
+    expect(new Set(glyphs).size).toBe(glyphs.length);
+  });
+
+  it('mixes digits, half-width Katakana and symbols', () => {
+    expect(glyphs).toEqual(expect.arrayContaining(['0', '9', 'ｱ', 'ﾝ', '\\', '#']));
+    expect(glyphs).toHaveLength(70);
+  });
+});

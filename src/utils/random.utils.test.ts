@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { between, intBetween, randomDigit } from './random.utils';
+import { between, intBetween, randomGlyph } from './random.utils';
 
 function always(value: number): () => number {
   return () => value;
@@ -26,12 +26,20 @@ describe('intBetween', () => {
   });
 });
 
-describe('randomDigit', () => {
+describe('randomGlyph', () => {
+  const glyphs = ['0', 'ｱ', '#'];
+
   it.each([
     [0, '0'],
-    [0.55, '5'],
-    [0.999, '9'],
-  ])('random %d → digit %s', (value, digit) => {
-    expect(randomDigit(always(value))).toBe(digit);
+    [0.5, 'ｱ'],
+    [0.999, '#'],
+  ])('random %d → %s', (value, glyph) => {
+    expect(randomGlyph(glyphs, always(value))).toBe(glyph);
+  });
+
+  it('only returns glyphs from the set', () => {
+    for (let i = 0; i < 200; i++) {
+      expect(glyphs).toContain(randomGlyph(glyphs));
+    }
   });
 });

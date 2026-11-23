@@ -10,7 +10,7 @@ export function intBetween([min, max]: Range, random: Random): number {
   return Math.min(max, min + Math.floor(random() * (max - min + 1)));
 }
 
-/** Single digit character 0-9. */
-export function randomDigit(random: Random = Math.random): string {
-  return String(Math.floor(random() * 10));
+/** Random item from a non-empty list of glyphs (pre-split so multi-byte characters stay whole). */
+export function randomGlyph(glyphs: readonly string[], random: Random = Math.random): string {
+  return glyphs[Math.floor(random() * glyphs.length)] ?? '';
 }
