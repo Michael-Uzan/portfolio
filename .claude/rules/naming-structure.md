@@ -31,8 +31,10 @@ Files in shared folders keep the suffix too: `src/config/journey.config.ts`.
 
 - A component gets its own folder once it has sibling files, with an `index.ts` re-export:
 
+  ```text
   components/MatrixRain/
-  MatrixRain.tsx MatrixRain.types.ts rain.ts rain.utils.ts startRain.ts rain.test.ts index.ts
+    MatrixRain.tsx  MatrixRain.types.ts  rain.ts  rain.utils.ts  startRain.ts  rain.test.ts  index.ts
+  ```
 
 - Single-file components stay flat (`components/Footer.tsx`).
 - Feature folders (`features/journey/`) stay flat inside; files carry suffixes.
