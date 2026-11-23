@@ -2,7 +2,7 @@
 
 ## Functions
 
-- Components (return JSX) are arrow consts:
+- Anything containing JSX (components, render helpers) is an arrow const:
 
   ```tsx
   export const Footer = () => {
@@ -40,6 +40,7 @@
 
 - Component Props may stay inline in the component file (one small interface).
 - Every other type → a `.types.ts` file (see naming-structure.md).
+- Test and e2e files may keep small local helper types inline.
 - Prefer `interface` for object shapes, `type` for unions and aliases.
 
 ## Size

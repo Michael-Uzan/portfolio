@@ -1,8 +1,12 @@
 import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useCallback, useRef } from 'react';
 import { activeStationIndex } from './activeStationIndex';
 import type { JourneyTimelineOptions, ScrollBounds } from './useJourneyTimeline.types';
 import { createJourneyTimeline, stationScrollTop } from './useJourneyTimeline.utils';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /**
  * Links path drawing, horizontal pan and the active station to scroll position.

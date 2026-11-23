@@ -6,6 +6,7 @@
   `variant="ghost" size="none"` and override layout with `className`.
 - Add new primitives with the shadcn CLI into `src/components/ui/`.
 - Merge classes with `cn` (`@/lib/utils`) — it resolves Tailwind conflicts.
+  Generated shadcn files in `components/ui/` import `cn` from `'cn'` directly; app code uses `@/lib/utils`.
 
 ## Accessibility
 

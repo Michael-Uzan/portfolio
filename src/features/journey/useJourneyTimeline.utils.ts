@@ -1,11 +1,7 @@
-import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { JOURNEY_SCRUB_SECONDS, JOURNEY_VIEWPORTS_PER_STATION } from '@/config/journey.config';
 import { clamp } from '@/utils/math.utils';
 import type { ScrollBounds, TimelineSetup } from './useJourneyTimeline.types';
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /** Scroll position that lands on station `index`, just inside its band (browsers round to whole px). */
 export function stationScrollTop(

@@ -30,6 +30,7 @@ export const Station = ({ station, point, isActive, isReached, onSelect }: Stati
         className={cn(
           'flex h-auto w-44 flex-col gap-1 rounded-xl p-2 text-center font-normal whitespace-normal duration-500 hover:bg-transparent hover:text-inherit motion-reduce:transition-none dark:hover:bg-transparent',
           'focus-visible:ring-lime-200/60',
+          'focus-visible:outline-hidden',
           isReached ? 'opacity-100' : 'opacity-60',
           isActive && 'scale-110 motion-reduce:scale-100',
         )}

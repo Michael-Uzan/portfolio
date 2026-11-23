@@ -2,15 +2,15 @@
 
 ## File suffixes
 
-| Suffix                        | Holds                                                     | Example               |
-| ----------------------------- | --------------------------------------------------------- | --------------------- |
-| `.types.ts`                   | types / interfaces                                        | `MatrixRain.types.ts` |
-| `.consts.ts`                  | values shown on the site: names, titles, links            | `links.consts.ts`     |
-| `.config.ts`                  | behavior / tuning: spacing, fps, breakpoints, route table | `journey.config.ts`   |
-| `.utils.ts`                   | pure functions, no React                                  | `math.utils.ts`       |
-| `.schemas.ts`                 | zod schemas                                               | `journey.schemas.ts`  |
-| `.styles.ts` / `.variants.ts` | styles pulled out of a component                          | `Button.variants.ts`  |
-| `.test.ts(x)`                 | tests, next to the file under test                        | `rain.test.ts`        |
+| Suffix                        | Holds                                                                  | Example               |
+| ----------------------------- | ---------------------------------------------------------------------- | --------------------- |
+| `.types.ts`                   | types / interfaces                                                     | `MatrixRain.types.ts` |
+| `.consts.ts`                  | values shown on the site: names, titles, links                         | `links.consts.ts`     |
+| `.config.ts`                  | behavior / tuning: spacing, fps, breakpoints, route table              | `journey.config.ts`   |
+| `.utils.ts`                   | plain functions — no components or hooks (may touch DOM, canvas, GSAP) | `math.utils.ts`       |
+| `.schemas.ts`                 | zod schemas                                                            | `journey.schemas.ts`  |
+| `.styles.ts` / `.variants.ts` | styles pulled out of a component                                       | `Button.variants.ts`  |
+| `.test.ts(x)`                 | tests, next to the file under test                                     | `rain.test.ts`        |
 
 Files in shared folders keep the suffix too: `src/config/journey.config.ts`.
 
@@ -37,7 +37,8 @@ Files in shared folders keep the suffix too: `src/config/journey.config.ts`.
   ```
 
 - Single-file components stay flat (`components/Footer.tsx`).
-- Feature folders (`features/journey/`) stay flat inside; files carry suffixes.
+- Feature folders (`features/journey/`) stay flat inside; grouping files carry suffixes.
+- A module named after its single main export (`buildPath.ts`, `formatPeriod.ts`, `startRain.ts`) may skip the suffix; files that group several types/consts/config/utils must use one.
 - Routes live in `src/routes/` (`routes.consts.ts`, `routes.config.ts`).
 
 ## Styles
@@ -48,6 +49,6 @@ Files in shared folders keep the suffix too: `src/config/journey.config.ts`.
 
 ## Names
 
-- Components and their folders: PascalCase (`StationCard.tsx`).
+- Components and their folders: PascalCase (`StationCard.tsx`), except `components/ui/` (shadcn lowercase file names, e.g. `button.tsx`).
 - Everything else: camelCase (`buildPath.ts`, `useJourneyTimeline.ts`).
 - Constants: SCREAMING_SNAKE_CASE.

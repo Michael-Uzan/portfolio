@@ -9,6 +9,8 @@
    Never skip the pre-commit hook.
 6. Open a PR to `main`; CI must be green before merge.
 
+A PostToolUse hook runs `eslint --fix` after every Edit/Write on `.ts(x)`; re-read a file before editing it again. Requires `jq`.
+
 ## Do
 
 - Keep files ≤ 200 lines; split by responsibility.

@@ -34,7 +34,7 @@ codebase to match. Behavior unchanged except removing the unused `course` / `awa
 | `.types.ts` | types / interfaces |
 | `.consts.ts` | values shown on the site (names, titles, links) |
 | `.config.ts(x)` | behavior / tuning (spacing, fps, breakpoints, route table) |
-| `.utils.ts` | pure functions, no React |
+| `.utils.ts` | plain functions — no components or hooks (may touch DOM, canvas, GSAP) |
 | `.schemas.ts` | zod schemas |
 | `.styles.ts` / `.variants.ts` | styles extracted once they grow large or are reused |
 | `.test.ts(x)` | tests |
