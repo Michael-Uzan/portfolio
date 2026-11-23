@@ -8,7 +8,12 @@ export const MATRIX_RAIN = {
   resetChance: 0.06,
   /** Frames pre-drawn into the single static frame shown under reduced motion. */
   staticFrames: 90,
-  headColor: '#ecfccb',
+  /** Characters the rain picks from: digits, half-width Katakana and symbols. */
+  glyphs: '0123456789ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ+-=*:<>[]{}|/\\#',
+  /** The leading character of each column is white with a soft glow; the trail behind it is green. */
+  headColor: '#ffffff',
+  /** Blur radius (px) of the leading character's glow; 0 turns it off. */
+  headGlow: 8,
   trailColor: '#4ade80',
   /** Depth layers: far columns are small, slow and dim; near ones big, fast and bright. Speed is rows per frame. */
   depths: {
