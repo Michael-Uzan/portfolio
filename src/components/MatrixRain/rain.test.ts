@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { MATRIX_RAIN } from '@/config/matrixRain.config';
-import type { RainDepth } from '@/types/matrixRain';
-import { buildCluster, createRain, layoutColumns, randomDigit, stepRain } from './rain';
+import type { RainDepth } from './MatrixRain.types';
+import { buildCluster, createRain, layoutColumns, stepRain } from './rain';
 
 const { depths, cluster } = MATRIX_RAIN;
 
@@ -27,7 +27,9 @@ function seeded(seed: number): () => number {
 }
 
 const SEEDS = Array.from({ length: 25 }, (_, i) => i + 1);
-const count = (list: RainDepth[], depth: RainDepth) => list.filter((d) => d === depth).length;
+function count(list: RainDepth[], depth: RainDepth): number {
+  return list.filter((d) => d === depth).length;
+}
 
 describe('buildCluster', () => {
   it.each(SEEDS)('keeps each depth count within its range (seed %d)', (seed) => {
@@ -66,8 +68,9 @@ describe('layoutColumns', () => {
       columns.forEach((column, i) => {
         expect(column.x).toBeLessThan(1280);
         const previous = columns[i - 1];
-        if (previous)
+        if (previous) {
           expect(column.x).toBeGreaterThanOrEqual(previous.x + depths[previous.depth].fontSize);
+        }
       });
     },
   );
@@ -141,15 +144,5 @@ describe('stepRain', () => {
       { resetChance: 0.1, random: sequence(0.5) },
     );
     expect(next.columns[0]?.y).toBe(12);
-  });
-});
-
-describe('randomDigit', () => {
-  it.each([
-    [0, '0'],
-    [0.55, '5'],
-    [0.999, '9'],
-  ])('random %d → digit %s', (value, digit) => {
-    expect(randomDigit(sequence(value))).toBe(digit);
   });
 });

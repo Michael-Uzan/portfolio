@@ -1,4 +1,5 @@
 import type { MATRIX_RAIN } from '@/config/matrixRain.config';
+import type { Random } from '@/types/random.types';
 
 export type RainDepth = keyof typeof MATRIX_RAIN.depths;
 
@@ -18,5 +19,27 @@ export interface RainState {
   /** Drawn in order: far columns first so nearer ones paint on top. */
   columns: RainColumn[];
   /** Canvas height in px — each column converts it to its own row count. */
+  height: number;
+}
+
+export interface LayoutColumn {
+  x: number;
+  depth: RainDepth;
+}
+
+export interface CreateRainOptions {
+  width: number;
+  height: number;
+  random?: Random;
+}
+
+export interface StepRainOptions {
+  /** Chance per frame that a column past the bottom restarts at the top. */
+  resetChance: number;
+  random?: Random;
+}
+
+export interface CanvasSize {
+  width: number;
   height: number;
 }
