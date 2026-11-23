@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { journey } from './journey';
 import { profile } from './profile';
-import { journeySchema, profileSchema } from './schemas';
+import { journeySchema } from './journey.schemas';
+import { profileSchema } from './profile.schemas';
 
 const station = {
   id: 'sample',
@@ -29,6 +30,10 @@ describe('journey content', () => {
 
   it('rejects an unknown station kind', () => {
     expect(journeySchema.safeParse([{ ...station, kind: 'hobby' }]).success).toBe(false);
+  });
+
+  it.each(['course', 'award'])('rejects the removed station kind %s', (kind) => {
+    expect(journeySchema.safeParse([{ ...station, kind }]).success).toBe(false);
   });
 });
 

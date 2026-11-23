@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
-// CLaude: is that fole sopuse to call journey.scemas or something like that?
-export const stationKindSchema = z.enum(['degree', 'role', 'course', 'project', 'award']);
+export const stationKindSchema = z.enum(['degree', 'role', 'project']);
 
 export const journeyStationSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/, 'id must be kebab-case'),
@@ -25,9 +24,3 @@ export const journeySchema = z
       stations.every((s, index) => index === 0 || s.year >= (stations[index - 1]?.year ?? s.year)),
     { message: 'Stations must be ordered oldest first' },
   );
-
-export const profileSchema = z.object({
-  name: z.string().min(1),
-  headline: z.string().min(1),
-  summary: z.string().min(1),
-});

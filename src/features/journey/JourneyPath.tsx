@@ -1,5 +1,5 @@
 import type { Ref } from 'react';
-import type { JourneyGeometry } from '@/types/journey';
+import type { JourneyGeometry } from './journeyLayout.types';
 
 interface JourneyPathProps {
   geometry: JourneyGeometry;

@@ -6,7 +6,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useWindowSize } from '@/hooks/useWindowSize';
 import { cn } from '@/lib/utils';
-import type { PathLayout } from '@/types/journey';
+import type { PathLayout } from './journeyLayout.types';
 import { buildPath } from './buildPath';
 import { JourneyPath } from './JourneyPath';
 import { Station } from './Station';

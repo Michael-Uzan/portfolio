@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
-import type { JourneyStation, PathPoint } from '@/types/journey';
+import type { JourneyStation } from '@/types/journey.types';
+import type { PathPoint } from './journeyLayout.types';
 import { STATION_ICONS } from './stationIcons';
 
 interface StationProps {
