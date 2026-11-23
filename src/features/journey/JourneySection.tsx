@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react';
 import { MatrixRain } from '@/components/MatrixRain';
-import { DESKTOP_QUERY } from '@/consts/breakpoints';
+import { DESKTOP_QUERY } from '@/config/breakpoints.config';
 import { journey } from '@/content/journey';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';

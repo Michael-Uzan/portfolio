@@ -1,7 +1,7 @@
 import type { RouteObject } from 'react-router';
-import { ROUTES } from '@/consts/routes';
-import { RootLayout } from './RootLayout';
-import { RouteErrorBoundary } from './RouteErrorBoundary';
+import { RootLayout } from '@/app/RootLayout';
+import { RouteErrorBoundary } from '@/app/RouteErrorBoundary';
+import { ROUTES } from './routes.consts';
 
 /** Pages are lazy so each one becomes its own chunk. */
 export const routes: RouteObject[] = [

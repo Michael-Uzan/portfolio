@@ -1,4 +1,4 @@
-import { REDUCED_MOTION_QUERY } from '@/consts/breakpoints';
+import { REDUCED_MOTION_QUERY } from '@/config/breakpoints.config';
 import { useMediaQuery } from './useMediaQuery';
 
 export function usePrefersReducedMotion(): boolean {

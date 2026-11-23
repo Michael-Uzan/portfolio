@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { MATRIX_RAIN } from '@/consts/animation';
+import { MATRIX_RAIN } from '@/config/matrixRain.config';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import type { RainState } from '@/types/matrixRain';
 import { createRain, randomDigit, stepRain } from './matrixRain/rain';

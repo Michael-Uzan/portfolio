@@ -1,4 +1,4 @@
-import type { MATRIX_RAIN } from '@/consts/animation';
+import type { MATRIX_RAIN } from '@/config/matrixRain.config';
 
 export type RainDepth = keyof typeof MATRIX_RAIN.depths;
 

@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
-import { SOCIAL_LINKS } from '@/consts/links';
-import { ROUTES } from '@/consts/routes';
+import { SOCIAL_LINKS } from '@/consts/links.consts';
+import { ROUTES } from '@/routes/routes.consts';
 import { profile } from '@/content/profile';
 
 export function Navbar() {

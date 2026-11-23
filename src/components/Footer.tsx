@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL } from '@/consts/links';
+import { CONTACT_EMAIL } from '@/consts/links.consts';
 import { profile } from '@/content/profile';
 
 // Claude: why not arrow function?

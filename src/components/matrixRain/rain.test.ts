@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { MATRIX_RAIN } from '@/consts/animation';
+import { MATRIX_RAIN } from '@/config/matrixRain.config';
 import type { RainDepth } from '@/types/matrixRain';
 import { buildCluster, createRain, layoutColumns, randomDigit, stepRain } from './rain';
 

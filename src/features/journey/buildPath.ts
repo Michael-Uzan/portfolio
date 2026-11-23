@@ -4,7 +4,7 @@ import {
   PATH_BULGE_RATIO,
   STATION_SPACING_Y,
   VERTICAL_PATH_MAX_WIDTH,
-} from '@/consts/animation';
+} from '@/config/journey.config';
 import type { JourneyGeometry, PathLayout, PathPoint } from '@/types/journey';
 
 interface BuildPathOptions {

@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup } from '@testing-library/react';
 import { afterEach, beforeEach, vi } from 'vitest';
-import { REDUCED_MOTION_QUERY } from '@/consts/breakpoints';
+import { REDUCED_MOTION_QUERY } from '@/config/breakpoints.config';
 import { mockMatchMedia } from './matchMedia';
 
 // GSAP's ScrollTrigger calls matchMedia when it registers at import time, before any beforeEach runs.

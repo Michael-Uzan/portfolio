@@ -2,7 +2,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useCallback, useRef, type RefObject } from 'react';
-import { JOURNEY_SCRUB_SECONDS, JOURNEY_VIEWPORTS_PER_STATION } from '@/consts/animation';
+import { JOURNEY_SCRUB_SECONDS, JOURNEY_VIEWPORTS_PER_STATION } from '@/config/journey.config';
 import type { JourneyGeometry } from '@/types/journey';
 import { activeStationIndex } from './activeStationIndex';
 

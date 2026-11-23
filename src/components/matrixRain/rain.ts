@@ -1,4 +1,4 @@
-import { MATRIX_RAIN } from '@/consts/animation';
+import { MATRIX_RAIN } from '@/config/matrixRain.config';
 import type { RainColumn, RainDepth, RainState } from '@/types/matrixRain';
 
 // Claude: move it to rain.types.ts
