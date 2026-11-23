@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { DESKTOP_QUERY, REDUCED_MOTION_QUERY } from '@/consts/breakpoints';
+import { DESKTOP_QUERY, REDUCED_MOTION_QUERY } from '@/config/breakpoints.config';
 import { mockMatchMedia } from '@/test/matchMedia';
 import { useMediaQuery } from './useMediaQuery';
 import { usePrefersReducedMotion } from './usePrefersReducedMotion';

@@ -1,9 +1,3 @@
-import type { z } from 'zod';
-import type { journeyStationSchema, stationKindSchema } from '@/content/schemas';
-
-export type StationKind = z.infer<typeof stationKindSchema>;
-export type JourneyStation = z.infer<typeof journeyStationSchema>;
-
 export interface PathPoint {
   x: number;
   y: number;
@@ -17,6 +11,20 @@ export interface JourneyGeometry {
   /** Station positions, same order as the journey data. */
   points: PathPoint[];
   /** Size of the SVG canvas (px). */
+  width: number;
+  height: number;
+}
+
+export interface BuildPathOptions {
+  count: number;
+  viewportWidth: number;
+  viewportHeight: number;
+  layout: PathLayout;
+}
+
+/** Station positions plus the canvas they fit in, before the curve is drawn. */
+export interface Canvas {
+  points: PathPoint[];
   width: number;
   height: number;
 }

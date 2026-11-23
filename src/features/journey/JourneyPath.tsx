@@ -1,5 +1,5 @@
 import type { Ref } from 'react';
-import type { JourneyGeometry } from '@/types/journey';
+import type { JourneyGeometry } from './journeyLayout.types';
 
 interface JourneyPathProps {
   geometry: JourneyGeometry;
@@ -7,8 +7,9 @@ interface JourneyPathProps {
   drawnPathRef: Ref<SVGPathElement>;
 }
 
-export function JourneyPath({ geometry, drawnPathRef }: JourneyPathProps) {
+export const JourneyPath = ({ geometry, drawnPathRef }: JourneyPathProps) => {
   const { d, width, height } = geometry;
+
   return (
     <svg
       aria-hidden="true"
@@ -28,4 +29,4 @@ export function JourneyPath({ geometry, drawnPathRef }: JourneyPathProps) {
       />
     </svg>
   );
-}
+};

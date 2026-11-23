@@ -1,4 +1,4 @@
-import type { Profile } from '@/types/profile';
+import type { Profile } from '@/types/profile.types';
 
 export const profile: Profile = {
   name: 'Michael Uzan',

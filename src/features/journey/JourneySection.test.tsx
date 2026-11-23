@@ -26,7 +26,9 @@ describe('JourneySection', () => {
   it('shows the first milestone details by default', () => {
     render(<JourneySection />);
     const [first] = journey;
-    if (!first) throw new Error('journey content is empty');
+    if (!first) {
+      throw new Error('journey content is empty');
+    }
     expect(screen.getByText(first.summary)).toBeInTheDocument();
   });
 
@@ -36,7 +38,9 @@ describe('JourneySection', () => {
     const buttons = within(getStationList()).getAllByRole('button');
     const lastButton = buttons[buttons.length - 1];
     const lastStation = journey[journey.length - 1];
-    if (!lastButton || !lastStation) throw new Error('journey content is empty');
+    if (!lastButton || !lastStation) {
+      throw new Error('journey content is empty');
+    }
 
     await user.click(lastButton);
 

@@ -1,8 +1,8 @@
 import { Link } from 'react-router';
 import { Button } from '@/components/ui/button';
-import { ROUTES } from '@/consts/routes';
+import { ROUTES } from '@/routes/routes.consts';
 
-export function NotFoundPage() {
+export const NotFoundPage = () => {
   return (
     <section className="grid min-h-svh place-items-center px-6 text-center text-white">
       <title>Page not found · Michael Uzan</title>
@@ -16,4 +16,4 @@ export function NotFoundPage() {
       </div>
     </section>
   );
-}
+};

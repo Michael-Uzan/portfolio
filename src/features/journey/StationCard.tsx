@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import type { JourneyStation } from '@/types/journey';
+import type { JourneyStation } from '@/types/journey.types';
 import { formatPeriod } from './formatPeriod';
 
 interface StationCardProps {
@@ -8,7 +8,7 @@ interface StationCardProps {
 }
 
 /** Details of the active station. Polite live region so keyboard users hear the change. */
-export function StationCard({ station, className }: StationCardProps) {
+export const StationCard = ({ station, className }: StationCardProps) => {
   return (
     <div
       aria-live="polite"
@@ -25,4 +25,4 @@ export function StationCard({ station, className }: StationCardProps) {
       <p className="mt-2 text-sm text-white/85">{station.summary}</p>
     </div>
   );
-}
+};

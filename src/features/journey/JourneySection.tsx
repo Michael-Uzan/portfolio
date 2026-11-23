@@ -1,19 +1,19 @@
 import { useMemo, useRef, useState } from 'react';
 import { MatrixRain } from '@/components/MatrixRain';
-import { DESKTOP_QUERY } from '@/consts/breakpoints';
+import { DESKTOP_QUERY } from '@/config/breakpoints.config';
 import { journey } from '@/content/journey';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useWindowSize } from '@/hooks/useWindowSize';
 import { cn } from '@/lib/utils';
-import type { PathLayout } from '@/types/journey';
+import type { PathLayout } from './journeyLayout.types';
 import { buildPath } from './buildPath';
 import { JourneyPath } from './JourneyPath';
 import { Station } from './Station';
 import { StationCard } from './StationCard';
 import { useJourneyTimeline } from './useJourneyTimeline';
 
-export function JourneySection() {
+export const JourneySection = () => {
   const isDesktop = useMediaQuery(DESKTOP_QUERY);
   const reducedMotion = usePrefersReducedMotion();
   const { width, height } = useWindowSize();
@@ -82,7 +82,10 @@ export function JourneySection() {
         <ol role="list" aria-label="Career milestones">
           {journey.map((station, index) => {
             const point = geometry.points[index];
-            if (!point) return null;
+            if (!point) {
+              return null;
+            }
+
             return (
               <Station
                 key={station.id}
@@ -91,7 +94,9 @@ export function JourneySection() {
                 isActive={index === activeIndex}
                 isReached={reducedMotion || index <= activeIndex}
                 onSelect={() => {
-                  if (!scrollToStation(index)) setActiveIndex(index);
+                  if (!scrollToStation(index)) {
+                    setActiveIndex(index);
+                  }
                 }}
               />
             );
@@ -107,4 +112,4 @@ export function JourneySection() {
       ) : null}
     </section>
   );
-}
+};

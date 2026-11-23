@@ -1,4 +1,4 @@
-import type { JourneyStation } from '@/types/journey';
+import type { JourneyStation } from '@/types/journey.types';
 
 /** Career milestones, oldest first. Add a new object to add a station. */
 export const journey: JourneyStation[] = [

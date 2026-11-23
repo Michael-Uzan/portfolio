@@ -1,5 +1,7 @@
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import type { JourneyStation, PathPoint } from '@/types/journey';
+import type { JourneyStation } from '@/types/journey.types';
+import type { PathPoint } from './journeyLayout.types';
 import { STATION_ICONS } from './stationIcons';
 
 interface StationProps {
@@ -10,21 +12,25 @@ interface StationProps {
   onSelect: () => void;
 }
 
-export function Station({ station, point, isActive, isReached, onSelect }: StationProps) {
+export const Station = ({ station, point, isActive, isReached, onSelect }: StationProps) => {
   const Icon = STATION_ICONS[station.kind];
+
   return (
     <li
       className="absolute -translate-x-1/2 -translate-y-1/2"
       style={{ left: point.x, top: point.y }}
     >
-      <button
+      <Button
         type="button"
+        variant="ghost"
+        size="none"
         onClick={onSelect}
         onFocus={onSelect}
         aria-current={isActive ? 'step' : undefined}
         className={cn(
-          'flex w-44 flex-col items-center gap-1 rounded-xl p-2 text-center transition duration-500 motion-reduce:transition-none',
-          'focus-visible:outline-2 focus-visible:outline-lime-200',
+          'flex h-auto w-44 flex-col gap-1 rounded-xl p-2 text-center font-normal whitespace-normal duration-500 hover:bg-transparent hover:text-inherit motion-reduce:transition-none dark:hover:bg-transparent',
+          'focus-visible:ring-lime-200/60',
+          'focus-visible:outline-hidden',
           isReached ? 'opacity-100' : 'opacity-60',
           isActive && 'scale-110 motion-reduce:scale-100',
         )}
@@ -42,7 +48,7 @@ export function Station({ station, point, isActive, isReached, onSelect }: Stati
         </span>
         <span className="text-sm leading-tight text-white">{station.title}</span>
         <span className="text-xs text-white/80">{station.org}</span>
-      </button>
+      </Button>
     </li>
   );
-}
+};

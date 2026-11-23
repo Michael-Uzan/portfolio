@@ -1,7 +1,7 @@
 import { isRouteErrorResponse, Link, useRouteError } from 'react-router';
-import { ROUTES } from '@/consts/routes';
+import { ROUTES } from '@/routes/routes.consts';
 
-export function RouteErrorBoundary() {
+export const RouteErrorBoundary = () => {
   const error = useRouteError();
   const message = isRouteErrorResponse(error)
     ? `${error.status} ${error.statusText}`
@@ -19,4 +19,4 @@ export function RouteErrorBoundary() {
       </div>
     </main>
   );
-}
+};

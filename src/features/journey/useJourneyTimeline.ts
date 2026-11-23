@@ -1,22 +1,12 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useCallback, useRef, type RefObject } from 'react';
-import { JOURNEY_SCRUB_SECONDS, JOURNEY_VIEWPORTS_PER_STATION } from '@/consts/animation';
-import type { JourneyGeometry } from '@/types/journey';
+import { useCallback, useRef } from 'react';
 import { activeStationIndex } from './activeStationIndex';
+import type { JourneyTimelineOptions, ScrollBounds } from './useJourneyTimeline.types';
+import { createJourneyTimeline, stationScrollTop } from './useJourneyTimeline.utils';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-interface JourneyTimelineOptions {
-  sectionRef: RefObject<HTMLElement | null>;
-  sceneRef: RefObject<HTMLDivElement | null>;
-  drawnPathRef: RefObject<SVGPathElement | null>;
-  geometry: JourneyGeometry;
-  pinned: boolean;
-  animate: boolean;
-  onActiveIndexChange: (index: number) => void;
-}
 
 /**
  * Links path drawing, horizontal pan and the active station to scroll position.
@@ -32,50 +22,38 @@ export function useJourneyTimeline({
   onActiveIndexChange,
 }: JourneyTimelineOptions): (index: number) => boolean {
   const lastIndexRef = useRef(0);
-  const triggerRef = useRef<{ start: number; end: number } | null>(null);
+  const boundsRef = useRef<ScrollBounds | null>(null);
+  const stationCount = geometry.points.length;
 
   useGSAP(
     () => {
-      triggerRef.current = null;
+      boundsRef.current = null;
       lastIndexRef.current = -1;
       const section = sectionRef.current;
       const scene = sceneRef.current;
       const path = drawnPathRef.current;
-      if (!animate || !section || !scene || !path) return;
-
-      const count = geometry.points.length;
-      const length = path.getTotalLength();
-      gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
-
-      const timeline = gsap.timeline({
-        defaults: { ease: 'none' },
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: pinned
-            ? () => `+=${count * JOURNEY_VIEWPORTS_PER_STATION * window.innerHeight}`
-            : 'bottom bottom',
-          pin: pinned,
-          scrub: JOURNEY_SCRUB_SECONDS,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            const index = activeStationIndex(self.progress, count);
-            if (index === lastIndexRef.current) return;
-            lastIndexRef.current = index;
-            onActiveIndexChange(index);
-          },
-        },
-      });
-      triggerRef.current = timeline.scrollTrigger ?? null;
-
-      timeline.to(path, { strokeDashoffset: 0, duration: 1 }, 0);
-      if (pinned) {
-        timeline.to(
-          scene,
-          { x: () => -Math.max(0, geometry.width - window.innerWidth), duration: 1 },
-          0,
-        );
+      if (!animate || !section || !scene || !path) {
+        return;
       }
+
+      const reportProgress = (progress: number) => {
+        const index = activeStationIndex(progress, stationCount);
+        if (index === lastIndexRef.current) {
+          return;
+        }
+        lastIndexRef.current = index;
+        onActiveIndexChange(index);
+      };
+
+      const timeline = createJourneyTimeline({
+        section,
+        scene,
+        path,
+        geometry,
+        pinned,
+        onProgress: reportProgress,
+      });
+      boundsRef.current = timeline.scrollTrigger ?? null;
     },
     {
       scope: sectionRef,
@@ -84,19 +62,16 @@ export function useJourneyTimeline({
     },
   );
 
-  const stationCount = geometry.points.length;
   return useCallback(
     (index: number) => {
-      const trigger = triggerRef.current;
-      if (!pinned || !trigger || stationCount < 2) {
+      const bounds = boundsRef.current;
+      if (!pinned || !bounds || stationCount < 2) {
         lastIndexRef.current = index;
+
         return false;
       }
-      const clamped = Math.min(Math.max(index, 0), stationCount - 1);
-      // Aim just inside the band: the browser rounds scroll positions to whole pixels.
-      const raw = trigger.start + (trigger.end - trigger.start) * (clamped / (stationCount - 1));
-      const top = Math.min(trigger.end, Math.ceil(raw) + 1);
-      window.scrollTo({ top, behavior: 'smooth' });
+      window.scrollTo({ top: stationScrollTop(bounds, index, stationCount), behavior: 'smooth' });
+
       return true;
     },
     [pinned, stationCount],

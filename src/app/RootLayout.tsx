@@ -2,7 +2,7 @@ import { Outlet, ScrollRestoration } from 'react-router';
 import { Footer } from '@/components/Footer';
 import { Navbar } from '@/components/Navbar';
 
-export function RootLayout() {
+export const RootLayout = () => {
   return (
     <>
       <a
@@ -19,4 +19,4 @@ export function RootLayout() {
       <ScrollRestoration />
     </>
   );
-}
+};

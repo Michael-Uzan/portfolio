@@ -1,17 +1,17 @@
-import { MATRIX_RAIN } from '@/consts/animation';
-import type { RainColumn, RainDepth, RainState } from '@/types/matrixRain';
-
-type Random = () => number;
-type Range = readonly [number, number];
+import { MATRIX_RAIN } from '@/config/matrixRain.config';
+import type { Random } from '@/types/random.types';
+import { between, intBetween } from '@/utils/random.utils';
+import type {
+  CreateRainOptions,
+  LayoutColumn,
+  RainColumn,
+  RainDepth,
+  RainState,
+  StepRainOptions,
+} from './MatrixRain.types';
 
 const { depths, cluster } = MATRIX_RAIN;
 const DEPTH_ORDER: Record<RainDepth, number> = { far: 0, mid: 1, near: 2 };
-
-/** Float in [min, max]. */
-const between = ([min, max]: Range, random: Random) => min + random() * (max - min);
-/** Integer in [min, max] (inclusive). */
-const intBetween = ([min, max]: Range, random: Random) =>
-  Math.min(max, min + Math.floor(random() * (max - min + 1)));
 
 /** One group of columns, e.g. 2 far + 3 mid + 1 near, shuffled so every cluster looks different. */
 export function buildCluster(random: Random = Math.random): RainDepth[] {
@@ -24,37 +24,33 @@ export function buildCluster(random: Random = Math.random): RainDepth[] {
     const j = Math.floor(random() * (i + 1));
     [group[i], group[j]] = [group[j] ?? 'mid', group[i] ?? 'mid'];
   }
+
   return group;
 }
 
 /** Fills the width left to right with clusters, each followed by an empty gap. */
-export function layoutColumns(
-  width: number,
-  random: Random = Math.random,
-): { x: number; depth: RainDepth }[] {
-  const columns: { x: number; depth: RainDepth }[] = [];
+export function layoutColumns(width: number, random: Random = Math.random): LayoutColumn[] {
+  const columns: LayoutColumn[] = [];
   let x = 0;
   while (x < width) {
     for (const depth of buildCluster(random)) {
-      if (x >= width) break;
+      if (x >= width) {
+        break;
+      }
       columns.push({ x, depth });
       x += depths[depth].fontSize;
     }
     x += intBetween(cluster.gap, random) * depths.mid.fontSize;
   }
-  return columns;
-}
 
-interface CreateRainOptions {
-  width: number;
-  height: number;
-  random?: Random;
+  return columns;
 }
 
 /** Lays out clustered columns, each with its depth's size and a random start row, speed and opacity. */
 export function createRain({ width, height, random = Math.random }: CreateRainOptions): RainState {
   const columns: RainColumn[] = layoutColumns(width, random).map(({ x, depth }) => {
     const preset = depths[depth];
+
     return {
       x,
       depth,
@@ -65,13 +61,8 @@ export function createRain({ width, height, random = Math.random }: CreateRainOp
     };
   });
   columns.sort((a, b) => DEPTH_ORDER[a.depth] - DEPTH_ORDER[b.depth]);
-  return { columns, height };
-}
 
-interface StepRainOptions {
-  /** Chance per frame that a column past the bottom restarts at the top. */
-  resetChance: number;
-  random?: Random;
+  return { columns, height };
 }
 
 /** Advances every column one frame; columns past the bottom restart at random so they stay staggered. */
@@ -87,8 +78,4 @@ export function stepRain(
         : { ...column, y: column.y + column.speed },
     ),
   };
-}
-
-export function randomDigit(random: Random = Math.random): string {
-  return String(Math.floor(random() * 10));
 }
