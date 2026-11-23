@@ -82,7 +82,9 @@ export const JourneySection = () => {
         <ol role="list" aria-label="Career milestones">
           {journey.map((station, index) => {
             const point = geometry.points[index];
-            if (!point) return null;
+            if (!point) {
+              return null;
+            }
 
             return (
               <Station
@@ -92,7 +94,9 @@ export const JourneySection = () => {
                 isActive={index === activeIndex}
                 isReached={reducedMotion || index <= activeIndex}
                 onSelect={() => {
-                  if (!scrollToStation(index)) setActiveIndex(index);
+                  if (!scrollToStation(index)) {
+                    setActiveIndex(index);
+                  }
                 }}
               />
             );

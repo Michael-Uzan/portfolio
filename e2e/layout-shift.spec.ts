@@ -27,7 +27,9 @@ test('home page does not shift layout when the web fonts arrive late', async ({ 
     window.__cls = 0;
     new PerformanceObserver((list) => {
       for (const entry of list.getEntries() as LayoutShiftEntry[]) {
-        if (!entry.hadRecentInput) window.__cls += entry.value;
+        if (!entry.hadRecentInput) {
+          window.__cls += entry.value;
+        }
       }
     }).observe({ type: 'layout-shift', buffered: true });
   });

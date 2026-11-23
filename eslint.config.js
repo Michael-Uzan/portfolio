@@ -28,7 +28,6 @@ export default defineConfig([
     rules: {
       // Numbers in template strings are safe and common in SVG path building.
       '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }],
-      curly: ['error', 'all'],
       'max-lines': ['error', { max: 200, skipBlankLines: true, skipComments: true }],
       '@stylistic/padding-line-between-statements': [
         'error',
@@ -58,4 +57,9 @@ export default defineConfig([
     rules: { 'max-lines': ['error', { max: 300, skipBlankLines: true, skipComments: true }] },
   },
   prettier,
+  {
+    // eslint-config-prettier turns curly off; "all" is Prettier-compatible, so re-enable it last.
+    files: ['**/*.{ts,tsx}'],
+    rules: { curly: ['error', 'all'] },
+  },
 ]);
