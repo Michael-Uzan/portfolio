@@ -1,0 +1,113 @@
+---------------------------
+Question: why did you do the old function:
+
+```
+export function A() {
+  return (
+  );
+}
+```
+
+instead of arrow function: 
+```
+export const A = ()=> <div/>
+```
+
+or:
+```
+export const A = ()=>{
+....
+return (
+    <div/>
+)
+}
+```
+
+Maybe add it to an EsLint?
+
+in addition, for pure js function, that dont return JSX we can use "function", like:
+
+const round = (value: number): number => Math.round(value * 10) / 10;
+
+---------
+
+-------
+each file / folder shoulde have types and consts etc.... it is not good in the same file.
+
+component.ts
+component.types
+component.consts
+component.test
+
+*** if it is general consts / types that are used across all project - move it to the general consts or types in the project
+
+-----------------
+NOTE the style:
+
+// Claude: it is okasy toput the style within the file, but if it is become very big over time... move it outside.
+//  and if it reuse somwhere else, or become heavy we should name it something like that:
+
+// Component.variants.ts 
+// Component-variants.ts 
+// Component.styles.ts 
+-------------------
+
+
+---------------------
+Lets create a config folder, and start making files inside.
+there is a different between config and consts....
+config - something relevant to the vehaviour, to the webiste settings
+consts - names, title, linkes, something that showes or show in the website.
+
+-----------
+
+
+
+------------
+Note: never use 
+if(A) return B
+
+use:
+if (A){
+    Return B
+}
+
+always add {}
+
+Maybe add it to EsLint ? to .claude?
+--------------
+
+
+--------------
+For the types, please call it like car.type.ts or ICar.ts or something like this so we will know by the name of the file that this is type.
+
+
+---------------
+
+
+---------
+Configure in the EsLInt the things i wrote up here.
+----------
+
+
+----------------------
+I dont see we have a .claude folder here.
+lets create one and start add definitons and things... like the things I wrote up here.
+
+Make sure each .claude file is not more than 100 lines.
+
+In general the files on the project (the code)
+ should not be more than 150-200 lines at most.
+
+ you can add:
+ - Tech Stack & Structure
+ - Build / Test / Lint
+ - Do's & Don'ts
+ -Workflow
+ - rules
+ - skills
+ - settings
+ - commands (maybe at the future and not now)
+ -agents (maybe at the future and not now)
+-----------------------
+

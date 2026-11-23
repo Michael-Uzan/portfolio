@@ -3,6 +3,7 @@
  * so station i sits at progress i / (count - 1).
  */
 export function activeStationIndex(progress: number, count: number): number {
+  // Claude: please alwayes use {} after if()
   if (count <= 1) return 0;
   const clamped = Math.min(1, Math.max(0, progress));
   // Small epsilon so float error at exact station boundaries never rounds down.

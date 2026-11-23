@@ -1,3 +1,7 @@
+// Claude: we need to distungwish from config to consts.....
+// config - MIN_STATION_SPACING_X = 260;
+// const - export const CONTACT_EMAIL = 'michael.uzan3@gmail.com';
+
 /** Minimum horizontal gap between stations on the pinned desktop route (px). */
 export const MIN_STATION_SPACING_X = 260;
 /** Vertical gap between stations on the stacked mobile / reduced-motion route (px). */

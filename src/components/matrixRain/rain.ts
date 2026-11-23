@@ -1,11 +1,15 @@
 import { MATRIX_RAIN } from '@/consts/animation';
 import type { RainColumn, RainDepth, RainState } from '@/types/matrixRain';
 
+// Claude: move it to rain.types.ts
 type Random = () => number;
 type Range = readonly [number, number];
 
 const { depths, cluster } = MATRIX_RAIN;
 const DEPTH_ORDER: Record<RainDepth, number> = { far: 0, mid: 1, near: 2 };
+
+//  Claude: is that a helper function? util function?
+// lets move it to a general place or to a local Rainbow.utils.ts
 
 /** Float in [min, max]. */
 const between = ([min, max]: Range, random: Random) => min + random() * (max - min);
@@ -45,12 +49,14 @@ export function layoutColumns(
   return columns;
 }
 
+// Claude: no. this is on types file.
 interface CreateRainOptions {
   width: number;
   height: number;
   random?: Random;
 }
 
+// CLaude: why not use arrow function?
 /** Lays out clustered columns, each with its depth's size and a random start row, speed and opacity. */
 export function createRain({ width, height, random = Math.random }: CreateRainOptions): RainState {
   const columns: RainColumn[] = layoutColumns(width, random).map(({ x, depth }) => {
@@ -89,6 +95,7 @@ export function stepRain(
   };
 }
 
+// CLaude: it fills like utils, isnt it?
 export function randomDigit(random: Random = Math.random): string {
   return String(Math.floor(random() * 10));
 }

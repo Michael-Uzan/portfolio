@@ -20,6 +20,8 @@ interface Canvas {
   height: number;
 }
 
+// Claude: Util? helper?
+// make it use "function" becuase it is pure js and not return jsx.
 /** One decimal place keeps the `d` string short and stable across renders. */
 const round = (value: number): number => Math.round(value * 10) / 10;
 

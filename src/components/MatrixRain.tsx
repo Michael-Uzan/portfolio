@@ -4,10 +4,13 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import type { RainState } from '@/types/matrixRain';
 import { createRain, randomDigit, stepRain } from './matrixRain/rain';
 
+// Claude: I dont like this file ar all. too much things happenes here. to noisy. make it order: utils, helpers, types etc.....
+
 const { fps, fadeAlpha, resetChance, staticFrames, headColor, trailColor } = MATRIX_RAIN;
 const FRAME_MS = 1000 / fps;
 const FONT_FAMILY = 'ui-monospace, SFMono-Regular, Menlo, monospace';
 
+// Claude: I think this function nneds to be somwhere else.... its like helper, or utils? I dont like it here.
 function drawFrame(ctx: CanvasRenderingContext2D, rain: RainState, width: number) {
   ctx.globalAlpha = 1;
   ctx.fillStyle = `rgba(0, 0, 0, ${fadeAlpha})`;

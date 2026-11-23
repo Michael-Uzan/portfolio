@@ -6,6 +6,7 @@ import { JOURNEY_SCRUB_SECONDS, JOURNEY_VIEWPORTS_PER_STATION } from '@/consts/a
 import type { JourneyGeometry } from '@/types/journey';
 import { activeStationIndex } from './activeStationIndex';
 
+// CLaude: can you please make all this logic in the component more readBlobText, like functions and give it names and so on ....
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 interface JourneyTimelineOptions {

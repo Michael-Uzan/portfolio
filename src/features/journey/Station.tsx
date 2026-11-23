@@ -17,6 +17,7 @@ export function Station({ station, point, isActive, isReached, onSelect }: Stati
       className="absolute -translate-x-1/2 -translate-y-1/2"
       style={{ left: point.x, top: point.y }}
     >
+      {/* Claude: wait, so why we did create the Button.tsx component? */}
       <button
         type="button"
         onClick={onSelect}

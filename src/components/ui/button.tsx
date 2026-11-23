@@ -3,6 +3,13 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from 'cn';
 import { Slot } from 'radix-ui';
 
+// Claude: it is okasy toput the style within the file, but if it is become very big over time... move it outside.
+//  and if it reuse somwhere else, or become heavy we should name it something like that:
+
+// Component.variants.ts
+// Component-variants.ts
+// Component.styles.ts
+
 const buttonVariants = cva(
   "inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
@@ -41,7 +48,8 @@ function Button({
   size = 'default',
   asChild = false,
   ...props
-}: React.ComponentProps<'button'> &
+}: // Claude: please define here a type to make it easy to read.
+React.ComponentProps<'button'> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
   }) {

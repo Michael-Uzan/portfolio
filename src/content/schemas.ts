@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+// CLaude: is that fole sopuse to call journey.scemas or something like that?
 export const stationKindSchema = z.enum(['degree', 'role', 'course', 'project', 'award']);
 
 export const journeyStationSchema = z.object({

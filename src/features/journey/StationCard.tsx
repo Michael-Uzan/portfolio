@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils';
 import type { JourneyStation } from '@/types/journey';
 import { formatPeriod } from './formatPeriod';
 
+// CLaude: it is okay to leave it here, as long as it small, and as long as it just the component props, and not like 10 different types for the entire file...
 interface StationCardProps {
   station: JourneyStation;
   className?: string;
