@@ -20,7 +20,7 @@ export const MatrixRain = () => {
   return (
     <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black">
       <canvas ref={canvasRef} className="sticky top-0 block h-svh w-full" />
-      <div className="absolute inset-0 bg-linear-to-b from-black/40 via-black/15 to-black/50" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/35 to-black/70" />
     </div>
   );
 };
